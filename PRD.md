@@ -1,13 +1,16 @@
-# Resonance — PRD (Task Specification)
+Dating App Landing Page Optimization
+   
+Task 1
+Improve hero section headline and value proposition to clearly explain what the dating app offers.
 
-## Current Sprint: Landing Page Polish
+Task 2
+Improve mobile responsiveness of the hero section and waitlist form.
 
-No active tasks. Tasks will be added here as they are planned.
+Task 3
+Add smooth scroll animation between landing page sections.
 
-<!-- 
-Task format:
-## Task [number]: [title]
-- Status: pending | in-progress | completed
-- Description: [what needs to be done]
-- Acceptance criteria: [how we know it's done]
--->
+Task 4
+Improve waitlist form validation and user feedback.
+
+Task 5
+Improve page loading performance and optimize assets.  

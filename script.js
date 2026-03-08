@@ -55,31 +55,111 @@ function initNavScroll() {
 function initWaitlistForm() {
     const form = document.getElementById('waitlistForm');
     const success = document.getElementById('successMsg');
+    const submitBtn = document.getElementById('submitBtn');
     if (!form) return;
+
+    const nameInput = form.querySelector('[name="name"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+
+    let isSubmitting = false;
+
+    // Real-time validation on blur
+    nameInput.addEventListener('blur', () => validateName());
+    emailInput.addEventListener('blur', () => validateEmail());
+
+    // Clear errors on input
+    nameInput.addEventListener('input', () => {
+        nameInput.classList.remove('input-error');
+        nameError.textContent = '';
+    });
+    emailInput.addEventListener('input', () => {
+        emailInput.classList.remove('input-error');
+        emailError.textContent = '';
+    });
+
+    function validateName() {
+        const val = nameInput.value.trim();
+        if (!val) {
+            nameInput.classList.add('input-error');
+            nameInput.classList.remove('input-success');
+            nameError.textContent = 'Please enter your name.';
+            return false;
+        }
+        if (val.length < 2) {
+            nameInput.classList.add('input-error');
+            nameInput.classList.remove('input-success');
+            nameError.textContent = 'Name must be at least 2 characters.';
+            return false;
+        }
+        nameInput.classList.remove('input-error');
+        nameInput.classList.add('input-success');
+        nameError.textContent = '';
+        return true;
+    }
+
+    function validateEmail() {
+        const val = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!val) {
+            emailInput.classList.add('input-error');
+            emailInput.classList.remove('input-success');
+            emailError.textContent = 'Please enter your email.';
+            return false;
+        }
+        if (!emailRegex.test(val)) {
+            emailInput.classList.add('input-error');
+            emailInput.classList.remove('input-success');
+            emailError.textContent = 'Please enter a valid email address.';
+            return false;
+        }
+        emailInput.classList.remove('input-error');
+        emailInput.classList.add('input-success');
+        emailError.textContent = '';
+        return true;
+    }
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const data = {
-            name: form.querySelector('[name="name"]').value,
-            email: form.querySelector('[name="email"]').value,
-            college: form.querySelector('[name="college"]').value,
-            timestamp: new Date().toISOString(),
-        };
+        if (isSubmitting) return;
 
-        // Save to localStorage
-        const list = JSON.parse(localStorage.getItem('resonance_waitlist') || '[]');
-        list.push(data);
-        localStorage.setItem('resonance_waitlist', JSON.stringify(list));
+        const nameValid = validateName();
+        const emailValid = validateEmail();
 
-        // Update counter
-        const counterEl = document.getElementById('counter');
-        const count = parseInt(counterEl.textContent.replace(/,/g, '')) + 1;
-        counterEl.textContent = count.toLocaleString();
+        if (!nameValid || !emailValid) return;
 
-        // Show success
-        form.style.display = 'none';
-        success.classList.add('show');
+        // Set loading state
+        isSubmitting = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Joining...';
+
+        // Simulate brief delay for UX
+        setTimeout(() => {
+            const data = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                college: form.querySelector('[name="college"]').value.trim(),
+                timestamp: new Date().toISOString(),
+            };
+
+            // Save to localStorage
+            const list = JSON.parse(localStorage.getItem('resonance_waitlist') || '[]');
+            list.push(data);
+            localStorage.setItem('resonance_waitlist', JSON.stringify(list));
+
+            // Update counter
+            const counterEl = document.getElementById('counter');
+            const count = parseInt(counterEl.textContent.replace(/,/g, '')) + 1;
+            counterEl.textContent = count.toLocaleString();
+
+            // Show success
+            form.style.display = 'none';
+            success.classList.add('show');
+
+            isSubmitting = false;
+        }, 600);
     });
 }
 

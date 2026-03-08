@@ -352,6 +352,33 @@ input {
   animation: fadeUp 0.5s ease;
 }
 
+/* Form validation styles */
+.form-field {
+  width: 100%;
+}
+
+.form-error {
+  display: block;
+  font-size: 0.78rem;
+  color: #c0392b;
+  margin-top: 6px;
+  min-height: 1.2em;
+  transition: opacity 0.3s ease;
+}
+
+.form input.input-error {
+  border-bottom-color: #c0392b;
+}
+
+.form input.input-success {
+  border-bottom-color: #9a6f45;
+}
+
+.form-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .success-msg h3 {
   font-family: var(--font-serif);
   font-size: 1.6rem;

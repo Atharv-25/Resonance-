@@ -155,11 +155,6 @@ function initWaitlistForm() {
             .then(response => response.json())
             .then(result => {
                 if (result.result === 'success') {
-                    // Update counter
-                    const counterEl = document.getElementById('counter');
-                    const count = parseInt(counterEl.textContent.replace(/,/g, '')) + 1;
-                    counterEl.textContent = count.toLocaleString();
-
                     // Show success message
                     form.style.display = 'none';
                     success.classList.add('show');

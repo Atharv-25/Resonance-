@@ -135,31 +135,47 @@ function initWaitlistForm() {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Joining...';
 
-        // Simulate brief delay for UX
-        setTimeout(() => {
-            const data = {
-                name: nameInput.value.trim(),
-                email: emailInput.value.trim(),
-                college: form.querySelector('[name="college"]').value.trim(),
-                timestamp: new Date().toISOString(),
-            };
+        const data = {
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            college: form.querySelector('[name="college"]').value.trim(),
+            timestamp: new Date().toISOString(),
+        };
 
-            // Save to localStorage
-            const list = JSON.parse(localStorage.getItem('resonance_waitlist') || '[]');
-            list.push(data);
-            localStorage.setItem('resonance_waitlist', JSON.stringify(list));
+        // Google Apps Script Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxg0Z3xU1nw-tMO4V3JLWjrp_2TZV8prW1HVh3TlRDEjYB2aAbuo_GZVcfnbxvp2A2o2A/exec';
 
-            // Update counter
-            const counterEl = document.getElementById('counter');
-            const count = parseInt(counterEl.textContent.replace(/,/g, '')) + 1;
-            counterEl.textContent = count.toLocaleString();
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            }
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.result === 'success') {
+                    // Update counter
+                    const counterEl = document.getElementById('counter');
+                    const count = parseInt(counterEl.textContent.replace(/,/g, '')) + 1;
+                    counterEl.textContent = count.toLocaleString();
 
-            // Show success
-            form.style.display = 'none';
-            success.classList.add('show');
-
-            isSubmitting = false;
-        }, 600);
+                    // Show success message
+                    form.style.display = 'none';
+                    success.classList.add('show');
+                } else {
+                    throw new Error(result.error || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join the Waitlist';
+            })
+            .finally(() => {
+                isSubmitting = false;
+            });
     });
 }
 

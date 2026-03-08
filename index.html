@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resonance — Dating That Actually Understands You</title>
+  <meta name="description"
+    content="Resonance uses conversational AI to understand who you truly are — then finds someone who actually resonates. No swiping. No guessing.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <span class="nav-brand">Resonance</span>
+    <a href="#waitlist" class="nav-join">Join Waitlist</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" style="background:black;">
+      <video autoplay muted loop playsinline
+        style="position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;">
+        <source src="clip.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Matched at<br><em>deepest level.</em>
+      </h1>
+      <p class="hero-description">
+        No swiping. No forms. Just a real conversation with AI
+        that understands who you are then finds someone who
+        truly resonates.
+      </p>
+      <a href="#waitlist" class="hero-cta">
+        Get Early Access
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="waitlist" id="waitlist">
+    <div class="label reveal">Early Access</div>
+    <h2 class="reveal">Find your <em>resonance.</em></h2>
+    <p class="sub reveal">
+      Launching city by city, starting with select colleges.
+      Join the waitlist to be first.
+    </p>
+
+    <div class="waitlist-count reveal">
+      <span id="counter">69</span> people already waiting
+    </div>
+
+    <form class="form reveal" id="waitlistForm">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <input type="text" name="college" placeholder="Your college or city">
+      <button type="submit" class="form-btn">Join the Waitlist</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <h3>You're in. ✦</h3>
+      <p>We'll reach out when Resonance arrives in your area. Get ready to connect for real.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-brand">✦ Resonance</span>
+    <span class="footer-copy">© 2026</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

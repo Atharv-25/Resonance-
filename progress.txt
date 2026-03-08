@@ -1,0 +1,11 @@
+# Progress Log
+
+## 2026-03-08
+- [COMPLETED] Initial landing page created
+- [COMPLETED] Hero section with video background (clip.mp4)
+- [COMPLETED] Navigation: "Resonance" (top-left) + "Join Waitlist" (top-right)
+- [COMPLETED] Hero title: "Matched at / deepest level."
+- [COMPLETED] Waitlist form with name, email, college fields
+- [COMPLETED] Warm cinematic theme applied to all sections
+- [COMPLETED] Footer with brand + copyright
+- [COMPLETED] Git repository initialized

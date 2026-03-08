@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initNavScroll();
     initWaitlistForm();
+    initHeroParallax();
+    initStaggeredReveals();
 });
 
 /* --- Scroll Reveal --- */
@@ -78,5 +80,36 @@ function initWaitlistForm() {
         // Show success
         form.style.display = 'none';
         success.classList.add('show');
+    });
+}
+
+/* --- Hero Parallax on Scroll --- */
+function initHeroParallax() {
+    const heroContent = document.querySelector('.hero-content');
+    if (!heroContent) return;
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                const heroHeight = window.innerHeight;
+                const progress = Math.min(scrollY / heroHeight, 1);
+
+                heroContent.style.opacity = 1 - progress * 0.8;
+                heroContent.style.transform = `translateY(${progress * 40}px)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+/* --- Staggered Reveal Delays --- */
+function initStaggeredReveals() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach((el, i) => {
+        el.style.transitionDelay = `${i * 0.1}s`;
     });
 }

@@ -15,5 +15,5 @@ Improve waitlist form validation and user feedback.
 Task 5
 Improve page loading performance and optimize assets.  
 
-Task 6 (In Progress)
+Task 6
 Connect waitlist form to Google Sheets to collect Name, Email, and College/City data.

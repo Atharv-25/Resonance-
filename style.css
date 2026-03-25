@@ -2,7 +2,7 @@
    RESONANCE — Vintage Cinematic Design
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap');
 
 /* --- Tokens --- */
 :root {
@@ -13,7 +13,7 @@
   --accent: #d4a574;
   --accent-soft: rgba(212, 165, 116, 0.2);
   --border: rgba(245, 239, 230, 0.08);
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', -apple-system, sans-serif;
 }
 

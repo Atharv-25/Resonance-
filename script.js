@@ -138,7 +138,7 @@ function initWaitlistForm() {
         const data = {
             name: nameInput.value.trim(),
             email: emailInput.value.trim(),
-            college: form.querySelector('[name="college"]').value.trim(),
+            college: 'Chandigarh University',
             timestamp: new Date().toISOString(),
         };
 
@@ -155,9 +155,10 @@ function initWaitlistForm() {
             .then(response => response.json())
             .then(result => {
                 if (result.result === 'success') {
-                    // Show success message
+                    // Show success modal
                     form.style.display = 'none';
-                    success.classList.add('show');
+                    const successModal = document.getElementById('successModal');
+                    if (successModal) successModal.classList.add('show');
                 } else {
                     throw new Error(result.error || 'Unknown error');
                 }
@@ -172,6 +173,22 @@ function initWaitlistForm() {
                 isSubmitting = false;
             });
     });
+
+    // Modal close listeners
+    const modal = document.getElementById('successModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    if (modal && closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    }
 }
 
 /* --- Hero Parallax on Scroll --- */
